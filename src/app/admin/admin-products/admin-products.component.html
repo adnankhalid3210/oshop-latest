@@ -1,0 +1,57 @@
+<!-- <div class="container mt-5">
+<a routerLink="/admin/products/new" class="btn btn-primary">New Product</a><br>
+<p>
+    <input 
+    #query
+    (keyup)="filter(query.value)"
+    type="text" class="form-control" placeholder="Search...">
+</p>
+
+
+
+
+</div>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Title</th>
+            <th>Price</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        
+            <tr *ngFor="let p of filteredProducts">
+                <td>{{p.title}}</td>
+                <td>{{p.price}}</td>
+                <td>
+                    <a [routerLink]="['/admin/products/',p.key]">Edit</a>
+                </td>
+            </tr>
+        
+    </tbody>
+</table> --><br><br><br>
+<table class="table table-hover" matSort (matSortChange)="sortData($event)">
+    <tr>
+      <th mat-sort-header="title">Title</th>
+      <th mat-sort-header="price">Price</th>
+      <th></th>
+    </tr>
+
+    <tr *ngFor="let p of filteredProducts">
+        <td>{{p.title}}</td>
+        <td>{{p.price}}</td>
+        <td>
+            <a [routerLink]="['/admin/products/',p.key]">Edit</a>
+        </td>
+    </tr>
+
+
+  </table>
+  <mat-paginator [length]="products?.length"
+              [pageSize]="pagesize"
+              [pageSizeOptions]="[5, 10, 25, 100]"
+              (page)="pageEvent = handlePage($event)"
+              [pageIndex]="currentPage">
+</mat-paginator>
